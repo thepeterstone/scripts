@@ -3,9 +3,9 @@ if (!user_is_local()) {
   deny_access();
 }
 
-$raw = base64_decode(ifset($_GET['cmd']));
-$cmd = escapeshellcmd($raw);
-$input = htmlentities($raw);
+$raw = ifset($_GET['cmd']);
+$cmd = escapeshellcmd(base64_decode($raw));
+$input = htmlentities($cmd);
 $output = htmlentities(`$cmd`);
 ?><!DOCTYPE html>
 <html lang="en">
