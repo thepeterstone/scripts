@@ -32,17 +32,20 @@ main() {
 
 
 add_user() {
+    echo "Adding user ($USER)..."
     # add our user, but don't enable login
     adduser --shell /bin/zsh --disabled-password $USER
     # find the homedir
     HOME="/home/$USER"
     # add an authorized_key for SSH access - user must have root password to admin the box!
     mkdir -p $HOME/.ssh
+    echo "  installing ssh key (from $MASTER)"
     curl "$MASTER/$USER.pub" >$HOME/.ssh/authorized_keys
     chown -R $USER.$USER $HOME/.ssh
 }
 
 setup_security() {
+    echo "Setting up security..."
     # Firewall
     curl "$MASTER/fw_base.sh" >fw_base.sh
     # If running interactively, customize the firewall first.
@@ -50,10 +53,11 @@ setup_security() {
     if [[ "$INTERACTIVE" == "true" ]]; then
         vim fw_base.sh
     fi
-    # OK, enable the firewall
+    echo "  enabling the firewall"
     chmod +x fw_base.sh && ./fw_base.sh
 
     # App-specific: SSH
+    echo "  configuring ssh"
     #sed -i 's/PermitRootLogin Yes/PermitRootLogin No/' /etc/ssh/sshd_config
     sed -i 's/Port 22/Port 7383/' /etc/ssh/sshd_config
     service ssh restart
@@ -65,9 +69,10 @@ setup_security() {
 }
 
 upgrade_and_install() {
+    echo "Updating software"
     apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade
-
-    apt-get -y install encfs tmux vim-nox zsh
+    echo "  installing tools"
+    apt-get -yq install encfs tmux vim-nox zsh
 }
 
 main
