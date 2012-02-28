@@ -23,7 +23,7 @@ HEARTBEAT="http://terst.org/api/heartbeat"
 
 
 main() {
-    upgrade_and_install && add_user && setup_security
+    upgrade_and_install && setup_security && add_user
 
     # ping heartbeat server
     IPS=$(ifconfig|awk -F: '/inet addr/ {print $2}'|awk '{print $1}'|xargs|sed 's/ /+/g')
