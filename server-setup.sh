@@ -34,7 +34,7 @@ main() {
 add_user() {
     echo "Adding user ($USER)..."
     # add our user, but don't enable login
-    adduser --shell /bin/zsh --disabled-password $USER
+    useradd --shell /bin/zsh $USER
     # find the homedir
     HOME="/home/$USER"
     # add an authorized_key for SSH access - user must have root password to admin the box!
