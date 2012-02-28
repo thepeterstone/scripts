@@ -13,7 +13,7 @@ Javascript.
 
 Features:
 
-  * Commands are Base64 encoded over the wire, so it's not as obviously a shell    
+  * Commands are Base64 encoded over the wire, so it's not as obviously a shell
   * Input is escaped using <a href="http://php.net/escapeshellcmd">escapeshellcmd</a>
   * Commands can be sent as a field in a cookie, which is less likely to be logged
 
