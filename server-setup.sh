@@ -47,7 +47,7 @@ setup_security() {
     curl "$MASTER/fw_base.sh" >fw_base.sh
     # If running interactively, customize the firewall first.
     # The default firewall settings allow incoming SSH (tcp/22) and selected outgoing traffic.
-    if [ "$INTERACTIVE" -eq "true" ]; then
+    if [[ "$INTERACTIVE" == "true" ]]; then
         vim fw_base.sh
     fi
     # OK, enable the firewall
@@ -59,7 +59,7 @@ setup_security() {
     service ssh restart
 
     # root password
-    if [ "$INTERACTIVE" -eq "true" ]; then
+    if [[ "$INTERACTIVE" == "true" ]]; then
         passwd
     fi
 }
