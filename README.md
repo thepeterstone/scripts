@@ -2,6 +2,10 @@
 
 A collection of scripts and utilities that don't fit anywhere else.
 
+## clean_js.sh
+
+Quick-and-dirty sed script for reformatting JavaScript.
+
 ## remote-shell.php
 
 Provides a minimally-obfuscated, slightly crippled remote shell using PHP and
@@ -21,3 +25,7 @@ Future:
     * syntax highlighting
     * automatically link to man pages, etc
   * Use <a href="https://github.com/unconed/TermKit">TermKit</a> serialized over PHP
+
+## server-setup.sh
+
+New server auto-configuration script, suitable for interactive use or as a StackScript for automating provisioning.
