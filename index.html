@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Scripts by thepeterstone</title>
+    
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Scripts</h1>
+        <p>a random collection of scripts</p>
+        <p class="view"><a href="https://github.com/thepeterstone/scripts">View the Project on GitHub <small>thepeterstone/scripts</small></a></p>
+        <ul>
+          <li><a href="https://github.com/thepeterstone/scripts/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/thepeterstone/scripts/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/thepeterstone/scripts">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Random Scripts</h1>
+
+<p>A collection of scripts and utilities that don't fit anywhere else.</p>
+
+<h2>clean_js.sh</h2>
+
+<p>Quick-and-dirty sed script for reformatting JavaScript.</p>
+
+<h2>parse_json_logs.php</h2>
+
+<p>Post-processor for JSON logs produced by my <code>json</code> log format.</p>
+
+<p>Here's the <code>LogFormat</code> directive:</p>
+
+<p><code>LogFormat "{'origin': '%h', 'local': { 'address': '%A', 'port': %p, 'pid': %P }, 'request': { 'uri': '%r', 'time': '%t', 'host': '%{Host}i' }, 'stats': { 'status': %&gt;s, 'time': %T, 'req_size': %I, 'res_size': %O, 'connection': '%X'}}" json</code></p>
+
+<h2>remote-shell.php</h2>
+
+<p>Provides a minimally-obfuscated, slightly crippled remote shell using PHP and
+Javascript.</p>
+
+<p>Features:</p>
+
+<ul>
+<li>Commands are Base64 encoded over the wire, so it's not as obviously a shell</li>
+<li>Input is escaped using <a href="http://php.net/escapeshellcmd">escapeshellcmd</a>
+</li>
+<li>Commands can be sent as a field in a cookie, which is less likely to be logged</li>
+</ul><p>Future:</p>
+
+<ul>
+<li>provide a shell - i.e., preserve state within a session</li>
+<li>
+<p>Use canvas-based interface for full shell features (completion, etc)</p>
+
+<ul>
+<li>syntax highlighting</li>
+<li>automatically link to man pages, etc</li>
+</ul>
+</li>
+<li><p>Use <a href="https://github.com/unconed/TermKit">TermKit</a> serialized over PHP</p></li>
+</ul><h2>server-setup.sh</h2>
+
+<p>New server auto-configuration script, suitable for interactive use or as a StackScript for automating provisioning.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/thepeterstone">thepeterstone</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+  </body>
+</html>
