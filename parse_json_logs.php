@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL|E_STRICT);
+ini_set('display_errors', 'On');
 
 $in = fopen("php://stdin", "r");
 while ($line = fgets($in, 4096)) {
