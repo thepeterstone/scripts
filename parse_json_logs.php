@@ -12,6 +12,26 @@ while ($line = fgets($in, 4096)) {
   if (json_last_error() !== JSON_ERROR_NONE) {
     bail("Couldn't decode JSON string");
   }
+
+  switch (substr($o->stats->status, 0, 1)) {
+  case '1': // Informational
+    bail('Status not implemented: ' . $o->stats->status);
+  case '2': // Successful
+    //echo "OK: {$o->request->uri}\n";
+    break;
+  case '3': // Redirection
+    break;
+  case '4': // Client Error
+    echo "Fail ({$o->stats->status}): {$o->origin} -> {$o->request->uri}\n";
+    //var_export($o->request); echo "\n";
+    break;
+  case '5': // Server Error
+    var_export($o->local);
+    break;
+  default:
+    bail('Undefined status! ' . $o->stats->status);
+  }
+
 }
 
 
