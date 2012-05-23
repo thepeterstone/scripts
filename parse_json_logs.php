@@ -7,8 +7,9 @@ while ($line = fgets($in, 4096)) {
   if (substr($line, -1) !== "\n") {
     bail("Input line longer than 4K");
   }
-  $o = json_decode($line);
-  if (!$o) {
+  $o = json_decode(trim($line));
+  // Fuck you, PHP.
+  if (json_last_error() !== JSON_ERROR_NONE) {
     bail("Couldn't decode JSON string");
   }
 }
