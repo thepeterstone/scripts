@@ -13,7 +13,7 @@
 ####
 
 # Use SSL here - scripts will be downloaded from this domain and run as ROOT!
-MASTER='http://terst.org/setup'
+MASTER='https://static.terst.org/files/'
 # What's your name, baby?
 USER=thepeterstone
 # Disable interactive mode for unattended setup
